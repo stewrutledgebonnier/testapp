@@ -21,7 +21,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 		self.send_header("Content-type", "text/html")
 		self.end_headers()
 		self.wfile.write(bytes(self.html_response % self.path, "utf-8"))
-        print("SUPERLOG[INFO]:::::::Served path: %s" % self.path)
+		print("SUPERLOG[INFO]:::::::Served path: %s" % self.path)
 
 
 
