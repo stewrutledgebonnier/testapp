@@ -18,7 +18,7 @@ logger.addHandler(handler)
 
 class RequestHandler(BaseHTTPRequestHandler):
     html_response = """
-        <h1>Headers:</h1>
+        <h2>Headers:</h2>
         <ol>{}</ol>
     """
 
