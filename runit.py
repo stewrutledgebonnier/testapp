@@ -18,7 +18,8 @@ logger.addHandler(handler)
 
 class RequestHandler(BaseHTTPRequestHandler):
     html_response = """
-        <h1 style="color: red;">Glad jul!</h1>
+        <h1>Headers:</h1>
+        <ol>{}</ol>
     """
 
     def do_GET(self):
@@ -26,10 +27,11 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        self.wfile.write(bytes(self.html_response, "utf-8"))
+        headers = ""
+        for header in self.headers.items():
+            headers += "<li>{}: {}</li>".format(header[0], header[1])
+        self.wfile.write(bytes(self.html_response.format(headers), "utf-8"))
         logger.info("Served path: %s" % self.path)
-        with open("tree.svg", "rb") as tree:
-            self.wfile.write(tree.read())
 
 
 
