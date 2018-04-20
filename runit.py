@@ -4,6 +4,7 @@ import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import logging
+import json
 
 
 hostPort = 8000
@@ -23,7 +24,6 @@ class RequestHandler(BaseHTTPRequestHandler):
     """
 
     def do_GET(self):
-        logger.debug("Processing request")
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -31,7 +31,8 @@ class RequestHandler(BaseHTTPRequestHandler):
         for header in self.headers.items():
             headers += "<li>{}: {}</li>".format(header[0], header[1])
         self.wfile.write(bytes(self.html_response.format(headers), "utf-8"))
-        logger.info("Served path: %s" % self.path)
+        message = {"status": 200, "path": self.path, "time": time.time(), "loglevel": "debug", "mesage": "message"}
+        print(json.dumps(message))
 
 
 

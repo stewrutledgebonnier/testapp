@@ -6,3 +6,4 @@ ADD tree.svg /
 EXPOSE 8000
 
 CMD [ "python", "-u", "runit.py" ]
+
