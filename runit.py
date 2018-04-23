@@ -31,7 +31,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         for header in self.headers.items():
             headers += "<li>{}: {}</li>".format(header[0], header[1])
         self.wfile.write(bytes(self.html_response.format(headers), "utf-8"))
-        message = {"status": 200, "path": self.path, "time": time.time(), "loglevel": "debug", "mesage": "message"}
+        message = {"status": 200, "path": self.path, "timeeeee": time.time(), "loglevel": "debug", "mesage": "message"}
         print(json.dumps(message))
 
 
